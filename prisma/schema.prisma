@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// https://www.prisma.io/docs/getting-started/quickstart
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  userId String @id @default(uuid())
+  userName String
+  userSurname String
+  email String @unique
+  password String
+  photo String?
+  rule String @default("comum")
+  promotion Promotions[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user")
+}
+
+model Promotions {
+  promotionId String @id @default(cuid())
+  title String
+  description String
+  url String
+  photo String?
+  expirationDate DateTime?
+  comments Comments[]
+  category Categories?
+  user Users @relation(fields: [userId], references: [userId])
+  userId String
+  rating Ratings[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("promotion")
+}
+
+model Categories {
+  categoryID Int @id @default(autoincrement())
+  name String
+  promotion Promotions @relation(fields: [promotionId], references: [promotionId])
+  promotionId String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("categories")
+}
+
+model Comments {
+  commentId String @id @default(cuid())
+  comment String
+  userId String
+  promotion Promotions @relation(fields: [promotionId], references: [promotionId])
+  promotionId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("comment")
+}
+
+model Ratings {
+  ratingId String @id @default(cuid())
+  rating Int
+  comment String
+  userId String
+  promotion Promotions @relation(fields: [promotionId], references: [promotionId])
+  promotionId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("rating")
+}
