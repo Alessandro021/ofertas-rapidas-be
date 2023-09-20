@@ -29,12 +29,14 @@ model Users {
 model Promotions {
   promotionId String @id @default(cuid())
   title String
+  company String
   description String
   url String
   photo String?
-  expirationDate DateTime?
+  // expirationDate DateTime?
   comments Comments[]
-  category Categories?
+  category Categories @relation(fields: [categoryId], references: [categoryId])
+  categoryId Int
   user Users @relation(fields: [userId], references: [userId])
   userId String
   rating Ratings[]
@@ -45,10 +47,9 @@ model Promotions {
 }
 
 model Categories {
-  categoryID Int @id @default(autoincrement())
+  categoryId Int @id @default(autoincrement())
   name String
-  promotion Promotions @relation(fields: [promotionId], references: [promotionId])
-  promotionId String @unique
+  promotions Promotions[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

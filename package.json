@@ -2,7 +2,7 @@
   "name": "ofertas-rapidas-be",
   "version": "1.0.0",
   "type": "module",
-  "description": "Back-end de um aplicativo de postagem de promoçoes.",
+  "description": "Back-end de um aplicativo de postagem de promoções.",
   "main": "index.js",
   "scripts": {
     "start": "node  --watch --no-warnings ./src/server.js",
