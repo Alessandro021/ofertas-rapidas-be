@@ -1,4 +1,5 @@
 import {prisma} from "../../database/prismaClient.js";
+import { encryptPassword } from "../../utils/generateHashEVerifyPassword.js";
 /** @argument user  {{userName: string, userSurname: string, email: string, password: string}} */
 
 export const createUserProvider = async (user) => {
@@ -11,8 +12,10 @@ export const createUserProvider = async (user) => {
 			return Error("USER_EXISTS");
 		}
 
+		const hash = await encryptPassword(user.password);
+
 		const newUser = await prisma.users.create({
-			data: {...user}
+			data: {...user, password: hash}
 		});
 
 		if(!newUser){
