@@ -17,13 +17,22 @@ model Users {
   userSurname String
   email String @unique
   password String
-  photo String?
+  profile Profile?
   rule String @default("comum")
   promotion Promotions[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("user")
+}
+
+model Profile {
+  profileId String @id @default(cuid())
+  photo String?
+  user Users @relation(fields: [userId], references: [userId])
+  userId String @unique
+
+   @@map("profile")
 }
 
 model Promotions {
@@ -33,7 +42,7 @@ model Promotions {
   description String
   url String
   photo String?
-  // expirationDate DateTime?
+  expirationDate DateTime?
   comments Comments[]
   category Categories @relation(fields: [categoryId], references: [categoryId])
   categoryId Int
@@ -44,6 +53,7 @@ model Promotions {
   updatedAt DateTime @updatedAt
 
   @@map("promotion")
+  @@index([title])
 }
 
 model Categories {

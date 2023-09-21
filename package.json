@@ -5,7 +5,7 @@
   "description": "Back-end de um aplicativo de postagem de promoções.",
   "main": "index.js",
   "scripts": {
-    "start": "node  --watch --no-warnings ./src/server.js",
+    "start": "node  --watch --trace-warnings ./src/server.js",
     "migrate": "npx prisma migrate dev --name init",
     "generate": "npx prisma generate"
   },
