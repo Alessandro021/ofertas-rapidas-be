@@ -2,7 +2,7 @@
 
 ## Visão Geral do Projeto
 
-O PromoApp é um aplicativo que permite aos usuários compartilharem e descobrirem promoções emocionantes em vários sites. Os usuários podem postar suas promoções favoritas, categorizá-las e interagir com outras promoções através de avaliações e comentários.
+O Ofertas Rapidas é um aplicativo que permite aos usuários compartilharem e descobrirem promoções emocionantes em vários sites. Os usuários podem postar suas promoções favoritas, categorizá-las e interagir com outras promoções através de avaliações e comentários.
 
 ## Funcionalidades Principais
 
@@ -17,7 +17,8 @@ O PromoApp é um aplicativo que permite aos usuários compartilharem e descobrir
 
 ## Instalação e Configuração
 
-1. Clone este repositório em sua máquina local: git clone https://github.com/seu-usuario/promoapp.git
+1. Clone este repositório em sua máquina local: git clone https://github.com/Alessandro021/ofertas-rapidas-be.git 
+
 
 2. Navegue até a pasta do projeto: cd ofertas-rapidas-be
 
