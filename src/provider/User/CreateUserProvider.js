@@ -1,5 +1,6 @@
 import {prisma} from "../../database/prismaClient.js";
 import { encryptPassword } from "../../utils/generateHashEVerifyPassword.js";
+import { generatedToken } from "../../utils/jwt.js";
 /** @argument user  {{userName: string, userSurname: string, email: string, password: string}} */
 
 export const createUserProvider = async (user) => {
@@ -22,7 +23,7 @@ export const createUserProvider = async (user) => {
 			return new Error("Error ao criar usuario.");
 		}
 
-		return {userId: newUser.userId, token: "123456789"};
+		return {userId: newUser.userId, token: generatedToken(newUser.userId)};
 	} catch (error) {
 		console.log(`ERROR CREATE USER: ${error}`);
 		return new Error("Error ao criar usuario.");
