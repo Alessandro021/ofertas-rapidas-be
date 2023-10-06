@@ -17,9 +17,9 @@ export const cretaeUser = async (req, res) => {
 
 	if(result instanceof Error){
 		if(result.message === "USER_EXISTS"){
-			return res.status(409).json({error: true, message: "Usaurio já existe."});
+			return res.status(409).json({error: true, errors: [{error: "Usaurio já existe."}]});
 		}
-		return res.status(500).json({error: true, message: result.message});
+		return res.status(500).json({error: true, errors: [{error: result.message}]});
 	}
 
 	return res.status(201).json({error: false, result: result});

@@ -8,13 +8,13 @@ export const authGuard = async (req, res, next) => {
 		const token = authHeader && authHeader.split(" ")[1];
 
 		if(!token) {
-			return res.status(401).json({error: true, message: "Acesso negado!"});
+			return res.status(401).json({error: true, errors: [{error: "Acesso negado!"}]});
 		}
 
 		const verified = decodedToken(token);
 
 		if(!verified){
-			return res.status(401).json({error: true, message: "Token invalido!"});
+			return res.status(401).json({error: true, errors: [{error: "Token invalido!"}]});
 		}
 
 		req.user = await prisma.users.findFirst({
@@ -38,7 +38,7 @@ export const authGuard = async (req, res, next) => {
 
 	} catch (error) {
 		// console.log(error);
-		return res.status(500).json({error: true, message: "Usuario não autorizado"});
+		return res.status(500).json({error: true, errors: [{error: "Usuario não autorizado"}] });
 	} finally {
 		await prisma.$disconnect();
 	}

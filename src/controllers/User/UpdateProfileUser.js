@@ -24,7 +24,7 @@ export const updateProfileUser = async (req, res) => {
 	const result = await updateProfileUserProvider(user);
 
 	if(result instanceof Error){
-		return res.status(500).json({error: true, message: result.message});
+		return res.status(500).json({error: true, errors: [{error: result.message}]});
 	}
 
 	return res.status(200).json({error: false, result: result});

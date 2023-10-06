@@ -11,24 +11,24 @@ export const validateData = (parameter , schema) => async (req, res, next) => {
 	case  "body":
 		await schema.validate(req.body, {abortEarly: false})
 			.then(() => next())
-			.catch(err => res.status(422).json({errors: err.inner.map(err => ({[err.path]: err.message}))}));
+			.catch(err => res.status(422).json({error: true, errors: err.inner.map(err => ({[err.path]: err.message}))}));
 		break;
 	case  "headers":
 		await schema.validate(req.headers, {abortEarly: false})
 			.then(() => next())
-			.catch(err => res.status(422).json({errors: err.inner.map(err => ({[err.path]: err.message}))})); 
+			.catch(err => res.status(422).json({error: true, errors: err.inner.map(err => ({[err.path]: err.message}))})); 
 		break;
 	case  "params":
 		await schema.validate(req.params, {abortEarly: false})
 			.then(() => next())
-			.catch(err => res.status(422).json({errors: err.inner.map(err => ({[err.path]: err.message}))})); 
+			.catch(err => res.status(422).json({error: true, errors: err.inner.map(err => ({[err.path]: err.message}))})); 
 		break;
 	case  "query":
 		await schema.validate(req.query, {abortEarly: false})
 			.then(() => next())
-			.catch(err => res.status(422).json({errors: err.inner.map(err => ({[err.path]: err.message}))})); 
+			.catch(err => res.status(422).json({error: true, errors: err.inner.map(err => ({[err.path]: err.message}))})); 
 		break;
 	default:
-		res.status(422).json({errors: "Erro ao validar dados enviados"});
+		res.status(422).json({error: true, errors: "Erro ao validar dados enviados"});
 	}
 };

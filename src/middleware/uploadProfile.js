@@ -33,7 +33,10 @@ export const uploadProfile = multer({
 	}
 });
 
-export const handleFileUploadError = (err, req, res) => {
-	return res.status(500).json({ error: true, message: err.message });
+export const handleFileUploadError = (err, req, res, next) => {
+	if(err instanceof Error){
+		return res.status(500).json({ error: true, errors: [{profile: err.message}]  });
+	}
+	return next();
 };
 
