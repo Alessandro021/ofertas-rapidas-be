@@ -13,8 +13,6 @@ datasource db {
 
 model Users {
   userId String @id @default(uuid())
-  userName String
-  userSurname String
   email String @unique
   password String
   profile Profile?
@@ -28,6 +26,8 @@ model Users {
 
 model Profile {
   profileId String @id @default(cuid())
+  userName String
+  userSurname String
   photo String?
   user Users @relation(fields: [userId], references: [userId])
   userId String @unique

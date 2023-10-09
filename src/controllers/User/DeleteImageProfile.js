@@ -1,6 +1,7 @@
 import { deleteImageProfileProvider } from "../../provider/User/DeleteImageProfileProvider.js";
 
 export const deleteImageProfile = async (req, res) => {
+
 	const userId = req.user.userId;
 
 	const result = await deleteImageProfileProvider(userId);

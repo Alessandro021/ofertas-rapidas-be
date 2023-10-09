@@ -16,16 +16,25 @@ export const createUserProvider = async (user) => {
 		const hash = await encryptPassword(user.password);
 
 		const newUser = await prisma.users.create({
-			data: {...user, password: hash}
+			data: {
+				email: user.email,
+				password: hash,
+				profile: {
+					create: {
+						userName: user.userName,
+						userSurname: user.userSurname
+					}
+				}
+			}
 		});
 
 		if(!newUser){
 			return new Error("Error ao criar usuario.");
 		}
 
-		return {userId: newUser.userId, token: generatedToken(newUser.userId)};
+		return {userId: newUser.userId};
 	} catch (error) {
-		console.log(`ERROR CREATE USER: ${error}`);
+		// console.log(`ERROR CREATE USER: ${error}`);
 		return new Error("Error ao criar usuario.");
 	} finally {
 		await prisma.$disconnect();

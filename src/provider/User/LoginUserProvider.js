@@ -16,7 +16,7 @@ export const loginUserProvider = async (user) => {
 		const userExist = await verifyPassword(user.password, verifyUser.password);
 
 		if(userExist){
-			return {id: verifyUser.userId, token: generatedToken(verifyUser.userId)};
+			return {userId: verifyUser.userId, token: generatedToken(verifyUser.userId)};
 		}
 		return new Error("Email ou senha estão incorretos.");
 

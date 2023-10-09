@@ -25,14 +25,15 @@ export const deleteImageProfileProvider = async (userId) => {
 			return Error("USER_NON_AUTHORIZED");
 		}
 
-		const photoDeleted = await prisma.profile.delete({
+		const photoDeleted = await prisma.profile.update({
 			where: {userId: userId},
+			data: {
+				photo: null,
+			},
 			select: {
 				user: {
 					select: {
 						userId: true,
-						userName: true,
-						userSurname: true,
 						email: true,
 						profile: true,
 						promotion: true,

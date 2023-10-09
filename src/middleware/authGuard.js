@@ -23,8 +23,6 @@ export const authGuard = async (req, res, next) => {
 				// password: false,
 				userId: true,
 				email: true,
-				userName: true,
-				userSurname: true,
 				profile: true,
 				promotion: true,
 				rule: true,
@@ -32,9 +30,7 @@ export const authGuard = async (req, res, next) => {
 				updatedAt: true, 
 			}
 		});
-
 		next();
-
 
 	} catch (error) {
 		// console.log(error);
