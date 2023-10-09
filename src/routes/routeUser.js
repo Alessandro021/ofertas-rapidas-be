@@ -4,9 +4,11 @@ import { handleFileUploadError, uploadProfile } from "../middleware/uploadProfil
 import { loginUser, validateReqLoginUser } from "../controllers/User/LoginUser.js";
 import { authGuard } from "../middleware/authGuard.js";
 import { updateProfileUser, validateReqUpdateProfileUser } from "../controllers/User/UpdateProfileUser.js";
+import { deleteImageProfile } from "../controllers/User/DeleteImageProfile.js";
 
 export const routeUser = Router();
 
 routeUser.post("/create", validateReqCreateUser, cretaeUser);
 routeUser.post("/login", validateReqLoginUser, loginUser);
 routeUser.put("/profile", authGuard, uploadProfile.single("profile"), handleFileUploadError, validateReqUpdateProfileUser, updateProfileUser);
+routeUser.delete("/profile", authGuard, deleteImageProfile);
