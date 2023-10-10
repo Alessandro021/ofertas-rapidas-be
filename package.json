@@ -7,7 +7,8 @@
   "scripts": {
     "start:dev": "nodemon ./src/server.js",
     "migrate": "npx prisma migrate dev --name init",
-    "generate": "npx prisma generate"
+    "generate": "npx prisma generate",
+    "seed-admin": "node ./src/database/seeds/createAdimin.js"
   },
   "author": "Alessandro da Mata",
   "license": "MIT",
