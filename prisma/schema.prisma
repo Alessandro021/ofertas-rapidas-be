@@ -58,7 +58,7 @@ model Promotions {
 
 model Categories {
   categoryId Int @id @default(autoincrement())
-  name String
+  name String @unique
   promotions Promotions[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
