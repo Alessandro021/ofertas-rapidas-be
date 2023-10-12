@@ -4,7 +4,7 @@ import { validateData } from "../../middleware/validateData.js";
 import { deleteCategoryProvider } from "../../provider/Categories/DeleteCategoryProvider.js";
 
 const validate = yup.object().shape({
-	id: yup.number().required().positive().lessThan(1).lessThan(100),
+	id: yup.number().required().positive().lessThan(1).lessThan(1000),
 });
 
 export const validateReqDeleteCategory = validateData("params", validate);

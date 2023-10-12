@@ -13,13 +13,13 @@ export const validateReqUpdateProfileUser = validateData("body", validate);
 
 export const updateProfileUser = async (req, res) => {
 
-	const userId = req.user.userId;
+	const userId = req.user?.userId;
 
 	let user = req.body;
 	user.userId = userId;
 
 	if(req.file){
-		user.photo = req.file.filename;
+		user.photo = req.file?.filename;
 	}
 	const result = await updateProfileUserProvider(user);
 

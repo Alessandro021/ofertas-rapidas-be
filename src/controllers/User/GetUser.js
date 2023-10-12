@@ -2,8 +2,11 @@ import { getUserProvider } from "../../provider/User/GetUserProvider.js";
 
 
 export const getUser = async (req, res) => {
+	const userId = req.user?.userId;
 
-	const userId = req.user.userId;
+	if(!userId){
+		return res.status(500).json({error: true, errors: [{error: "Erro ao buscar dados do usuario."}]});
+	}
 
 	const result = await getUserProvider(userId);
 
