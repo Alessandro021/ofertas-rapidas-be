@@ -6,6 +6,7 @@ import { authGuard } from "../middleware/authGuard.js";
 import { updateProfileUser, validateReqUpdateProfileUser } from "../controllers/User/UpdateProfileUser.js";
 import { deleteImageProfile } from "../controllers/User/DeleteImageProfile.js";
 import { getUser } from "../controllers/User/GetUser.js";
+import "../utils/yup/index.js";
 
 export const routeUser = Router();
 

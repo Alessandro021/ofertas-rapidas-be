@@ -12,7 +12,7 @@ const validate = yup.object().shape({
 	url: yup.string().strict().optional().url().min(7),
 	expirationDate: yup.date().optional(),
 	categoryId: yup.number().optional().positive().lessThan(1).lessThan(1000),
-	promotionId: yup.string().strict().required().min(21),
+	promotionId: yup.string().strict().required().min(25).max(25),
 });
 
 export const validateReqUpdatePromotions = async (req, res, next)=> {

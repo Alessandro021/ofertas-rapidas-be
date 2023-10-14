@@ -7,6 +7,7 @@ import { validateReqGetAllPromotions, getAllPromotions} from "../controllers/Pro
 import { validateReqGetPromotionById, getPromotionById} from "../controllers/Promotions/GetPromotionById.js";
 import { validateReqDeletePromotionById, deletePromotionById} from "../controllers/Promotions/DeletePromotionById.js";
 import { validateReqDeleteImagemPromotionById, deleteImagemPromotionById } from "../controllers/Promotions/DeleteImagePromotionById.js";
+import "../utils/yup/index.js";
 
 export const routePromotion = Router();
 
