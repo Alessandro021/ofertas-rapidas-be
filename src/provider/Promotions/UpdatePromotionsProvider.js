@@ -41,7 +41,7 @@ export const updatePromotionsProvider = async (promotion) => {
 		return new Error("Error ao atualizar promoção.");
 
 	} catch (error) {
-		console.log(`ERROR UPDATE PROMOTION: ${error}`);
+		// console.log(`ERROR UPDATE PROMOTION: ${error}`);
 		deletePhotoPromotion();
 		return new Error("error ao atualizar promoção.");
 	} finally {

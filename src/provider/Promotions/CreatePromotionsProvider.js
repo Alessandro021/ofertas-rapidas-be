@@ -34,7 +34,7 @@ export const createPromotionsProvider = async (promotion) => {
 		return addPromotion;
 
 	} catch (error) {
-		console.log(`ERROR CREATE PROMOTION: ${error}`);
+		// console.log(`ERROR CREATE PROMOTION: ${error}`);
 		deletePhotoPromotion();
 		return new Error("error ao criar promoção.");
 	} finally {

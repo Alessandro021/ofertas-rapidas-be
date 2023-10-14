@@ -100,7 +100,7 @@ export const getAllPromotionsProvider = async (get) => {
 		return promotions;
 
 	} catch (error) {
-		console.log(`ERROR GET ALL PROMOTIONS: ${error}`);
+		// console.log(`ERROR GET ALL PROMOTIONS: ${error}`);
 		return new Error("Error ao buscar promoções.");
 	} finally {
 		await prisma.$disconnect();
