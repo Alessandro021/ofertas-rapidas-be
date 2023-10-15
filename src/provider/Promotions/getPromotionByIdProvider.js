@@ -31,7 +31,16 @@ export const getPromotionByIdProvider = async (promotionId) => {
 						}
 					}
 				},
-				comments: true,
+				comments: {
+					orderBy: {updatedAt: "desc"},
+					select: {
+						commentId: true,
+						comment: true,
+						promotionId: true,
+						createdAt: true,
+						updatedAt: true,
+					}
+				},
 				rating: true,
 				createdAt: true,
 				updatedAt: true,
@@ -41,6 +50,13 @@ export const getPromotionByIdProvider = async (promotionId) => {
 		if(!promotion){
 			return {};
 		}
+
+		if(promotion?.comments){
+			promotion.comments.forEach((promo) => {
+				promo.user = promotion.user.profile;
+			});	
+		}
+
 
 		return promotion;
 		

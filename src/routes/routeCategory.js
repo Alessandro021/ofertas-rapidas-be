@@ -8,9 +8,6 @@ import { validateReqGetCategoryById, getCategoryById} from "../controllers/Categ
 import "../utils/yup/index.js";
 
 
-export {Router} from "express";
-
-
 export const routeCategory = Router();
 
 routeCategory.post("/create", authGuardAdmin, validateReqCreateCategory, createCategory );
