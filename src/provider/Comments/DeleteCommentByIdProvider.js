@@ -1,10 +1,10 @@
 import { prisma } from "../../database/prismaClient.js";
 
-/** @argument comment  {{commentId: string, userId: string}} */
+/** @argument comment  {{commentId: string, userId: string, promotionId: string}} */
 export const deleteCommentByIdProvider = async (comment) => {
 	try {
 		const comments = await prisma.comments.delete({
-			where: {commentId: comment.commentId, userId: comment.userId},
+			where: {commentId: comment.commentId, userId: comment.userId, promotionId: comment.promotionId},
 			select: {
 				commentId: true,
 			},

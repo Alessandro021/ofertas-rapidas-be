@@ -11,10 +11,14 @@ export const validateReqCreateComment = validateData("body", validate);
 
 export const createComment = async (req, res) => {
 
-	const {userId} = req.user;
+	const {userId } = req.user;
+	const {userName, userSurname, photo } = req.user.profile;
 
 	const comment = await validate.validate(req.body, {stripUnknown: true});
 	comment.userId = userId;
+	comment.userName = userName;
+	comment.userSurname=  userSurname;
+	comment.userPhoto = photo;
 
 	const result = await createCommentProvider(comment);
 

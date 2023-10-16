@@ -70,6 +70,9 @@ model Comments {
   commentId String @id @default(cuid())
   comment String
   userId String
+  userPhoto String?
+  userName String
+  userSurname String
   promotion Promotions @relation(fields: [promotionId], references: [promotionId])
   promotionId String
   createdAt DateTime @default(now())

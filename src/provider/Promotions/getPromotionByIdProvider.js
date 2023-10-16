@@ -37,6 +37,10 @@ export const getPromotionByIdProvider = async (promotionId) => {
 						commentId: true,
 						comment: true,
 						promotionId: true,
+						userId: true,
+						userPhoto: true,
+						userName: true,
+						userSurname: true,
 						createdAt: true,
 						updatedAt: true,
 					}
@@ -51,17 +55,10 @@ export const getPromotionByIdProvider = async (promotionId) => {
 			return {};
 		}
 
-		if(promotion?.comments){
-			promotion.comments.forEach((promo) => {
-				promo.user = promotion.user.profile;
-			});	
-		}
-
-
 		return promotion;
 		
 	} catch (error) {
-		// console.log(`ERROR GET BY ID PROMOTION: ${error}`);
+		console.log(`ERROR GET BY ID PROMOTION: ${error}`);
 		return new Error("error ao buscar promoção.");
 	} finally {
 		await prisma.$disconnect();
