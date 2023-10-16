@@ -15,12 +15,18 @@ export const getAllPromotionsProvider = async (get) => {
 							mode: "insensitive",
 						},
 					},
-					// {
-					// 	company: {
-					// 		contains: filter,
-					// 		mode: "insensitive",
-					// 	},
-					// },
+					{
+						company: {
+							contains: filter,
+							mode: "insensitive",
+						},
+					},
+					{
+						description: {
+							contains: filter,
+							mode: "insensitive",
+						}
+					}
 				],
 			},
 			orderBy: { updatedAt: "desc"},
@@ -94,13 +100,21 @@ export const getAllPromotionsProvider = async (get) => {
 		}
 
 		promotions.forEach((promotion) => {
-			promotion._count = { ...promotion._count, promotion: count };
+			const averageRating = promotion.rating.reduce((accumulator, amount, index, array ) => {
+				accumulator = accumulator + amount.rating;
+	
+				if(index === array.length - 1){
+					return accumulator / array.length;
+				}
+				return accumulator;
+			}, 0);
+			promotion._count = { ...promotion._count, promotion: count, averageRating: averageRating};
 		});
 
 		return promotions;
 
 	} catch (error) {
-		// console.log(`ERROR GET ALL PROMOTIONS: ${error}`);
+		console.log(`ERROR GET ALL PROMOTIONS: ${error}`);
 		return new Error("Error ao buscar promoções.");
 	} finally {
 		await prisma.$disconnect();

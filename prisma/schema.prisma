@@ -84,8 +84,11 @@ model Comments {
 model Ratings {
   ratingId String @id @default(cuid())
   rating Int
-  comment String
+  comment String?
   userId String
+  userPhoto String?
+  userName String
+  userSurname String
   promotion Promotions @relation(fields: [promotionId], references: [promotionId])
   promotionId String
   createdAt DateTime @default(now())

@@ -45,7 +45,21 @@ export const getPromotionByIdProvider = async (promotionId) => {
 						updatedAt: true,
 					}
 				},
-				rating: true,
+				rating: {
+					orderBy: {createdAt: "desc"},
+					select: {
+						ratingId: true,
+						rating: true,
+						comment: true,
+						userId: true,
+						userName: true,
+						userSurname: true,
+						userPhoto: true,
+						promotionId: true,
+						createdAt: true
+
+					}
+				},
 				createdAt: true,
 				updatedAt: true,
 			}
@@ -54,6 +68,16 @@ export const getPromotionByIdProvider = async (promotionId) => {
 		if(!promotion){
 			return {};
 		}
+		const averageRating = promotion.rating.reduce((accumulator, amount, index, array ) => {
+			accumulator = accumulator + amount.rating;
+
+			if(index === array.length - 1){
+				return accumulator / array.length;
+			}
+			return accumulator;
+		}, 0);
+
+		promotion._count.averageRating = averageRating;
 
 		return promotion;
 		

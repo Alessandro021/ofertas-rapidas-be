@@ -7,3 +7,4 @@ uploads/profile/*.jpeg
 uploads/promotion/*.png
 uploads/promotion/*.jpg
 uploads/promotion/*.jpeg
+prisma/migrations
