@@ -17,7 +17,7 @@ export const deleteImageProfileProvider = async (userId) => {
 			}
 		});
 
-		if(!photoExist){
+		if(!photoExist.profile.photo){
 			return Error("PHOTO_NOT_EXIST");
 		}
 
