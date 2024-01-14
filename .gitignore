@@ -1,10 +1,4 @@
 node_modules
 # Keep environment variables out of version control
 .env
-uploads/profile/*.png
-uploads/profile/*.jpg
-uploads/profile/*.jpeg
-uploads/promotion/*.png
-uploads/promotion/*.jpg
-uploads/promotion/*.jpeg
-prisma/migrations
+uploads/*

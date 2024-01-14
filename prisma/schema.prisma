@@ -11,12 +11,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ruleUser {
+  comum
+  admin
+}
+
 model Users {
   userId String @id @default(uuid())
   email String @unique
   password String
   profile Profile?
-  rule String @default("comum")
+  rule ruleUser @default(comum)
   promotion Promotions[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -34,6 +39,18 @@ model Profile {
 
    @@map("profile")
 }
+
+model Categories {
+  categoryId Int @id @default(autoincrement())
+  name String @unique
+  promotions Promotions[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+  @@map("categories")
+}
+
 
 model Promotions {
   promotionId String @id @default(cuid())
@@ -54,16 +71,6 @@ model Promotions {
 
   @@map("promotion")
   @@index([title])
-}
-
-model Categories {
-  categoryId Int @id @default(autoincrement())
-  name String @unique
-  promotions Promotions[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("categories")
 }
 
 model Comments {
@@ -96,3 +103,27 @@ model Ratings {
 
   @@map("rating")
 }
+
+
+// Users: Este modelo representa os usuários da aplicação. Ele tem um relacionamento com o modelo Profile, 
+// que é opcional (Profile?). Isso significa que um usuário pode ou não ter um perfil associado. Além disso, 
+// um usuário pode ter várias promoções (Promotions[]), o que indica que um usuário pode criar várias promoções.
+
+// Profile: Este modelo representa o perfil de um usuário. Ele tem um relacionamento com o modelo Users, que é 
+// obrigatório (Users @relation(fields: [userId], references: [userId])). Isso significa que um perfil sempre 
+// está associado a um usuário.
+
+// Categories: Este modelo representa as categorias de promoções. Ele tem um relacionamento com o modelo Promotions, 
+// que é um array (Promotions[]). Isso indica que uma categoria pode ter várias promoções.
+
+// Promotions: Este modelo representa as promoções. Ele tem três relacionamentos: com o modelo Users (um usuário pode 
+// criar várias promoções), com o modelo Categories (uma promoção pertence a uma categoria) e com o modelo Ratings 
+// (uma promoção pode receber várias classificações).
+
+// Comments: Este modelo representa os comentários feitos pelos usuários nas promoções. Ele tem um relacionamento com 
+// o modelo Promotions, que é obrigatório (Promotions @relation(fields: [promotionId], references: [promotionId])). 
+// Isso significa que um comentário sempre está associado a uma promoção.
+
+// Ratings: Este modelo representa as classificações feitas pelos usuários nas promoções. Ele também tem um relacionamento 
+// com o modelo Promotions, que é obrigatório (Promotions @relation(fields: [promotionId], references: [promotionId])). 
+// Isso significa que uma classificação sempre está associada a uma promoção.
