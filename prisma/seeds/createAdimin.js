@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
-import {prisma} from "../../database/prismaClient.js";
+import {prisma} from "../../src/database/prismaClient.js";
 import "dotenv/config";
-import { encryptPassword } from "../../utils/generateHashEVerifyPassword.js";
+import { encryptPassword } from "../../src/utils/generateHashEVerifyPassword.js";
+import { createCategories } from "./createCategories.js";
 export const createAdimin = async () => {
 	try {
 		const adminExist = await prisma.users.findFirst({
@@ -38,10 +39,9 @@ export const createAdimin = async () => {
         
 	} catch (error) {
 		// console.log(`ERROR CREATE ADMIN: ${error}`);
-		return new Error("Error ao criar administrador.");
+		return console.log("Error ao criar administrador.");
 	} finally {
 		await prisma.$disconnect();
+		createCategories();
 	}
 };
-
-createAdimin();
