@@ -10,11 +10,9 @@
     "generate": "npx prisma generate",
     "seed": "node ./prisma/seed.js"
   },
-
   "prisma": {
     "seed": "./prisma/seed.js"
-  }, 
-
+  },
   "author": "Alessandro da Mata",
   "license": "MIT",
   "dependencies": {
@@ -27,6 +25,7 @@
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.0.1",
+    "resend": "^2.1.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {

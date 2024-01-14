@@ -9,6 +9,7 @@ CREATE TABLE "user" (
     "rule" "ruleUser" NOT NULL DEFAULT 'comum',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userAuthenticated" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("userId")
 );

@@ -13,11 +13,12 @@ export const createAdimin = async () => {
 			email: process.env.ADMIN_USER_EMAIL,
 			rule: "admin",
 			password: await encryptPassword(process.env.ADMIN_USER_PASSWORD),
+			userAuthenticated: true,
 		};
 
 		const userAdiminProfile = {
 			userName: process.env.ADMIN_USER_NAME,
-			userSurname: process.env.ADMIN_USER_SUR_NAME
+			userSurname: process.env.ADMIN_USER_SUR_NAME,
 		};
 
 		if(adminExist) {

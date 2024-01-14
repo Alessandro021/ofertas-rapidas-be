@@ -25,6 +25,7 @@ model Users {
   promotion Promotions[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userAuthenticated Boolean @default(false)
 
   @@map("user")
 }
