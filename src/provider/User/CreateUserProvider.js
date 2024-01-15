@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import {prisma} from "../../database/prismaClient.js";
-import { resendMail } from "../../services/resend/index.js";
+import { sendmail } from "../../services/sendmail/index.js";
 import { encryptPassword } from "../../utils/generateHashEVerifyPassword.js";
 import "dotenv/config";
 /** @argument user  {{userName: string, userSurname: string, email: string, password: string}} */
@@ -76,7 +76,7 @@ export const createUserProvider = async (user) => {
 		</body>
 		</html>`;
 
-		resendMail({to: user.email, subject: "Validar conta no Ofertas Rapidas", html: html });
+		sendmail({to: user.email, subject: "Validar conta no Ofertas Rapidas", html: html });
 
 		return {userId: newUser.userId};
 	} catch (error) {
