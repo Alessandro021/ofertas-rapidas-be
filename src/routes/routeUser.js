@@ -7,8 +7,9 @@ import { updateProfileUser, validateReqUpdateProfileUser } from "../controllers/
 import { deleteImageProfile } from "../controllers/User/DeleteImageProfile.js";
 import { getUser } from "../controllers/User/GetUser.js";
 import "../utils/yup/index.js";
-import { authenticateUser } from "../controllers/User/AuthenticateUser.js";
+import { authenticateUser, validateReqAuthenticationUser } from "../controllers/User/AuthenticateUser.js";
 import { deleteUser } from "../controllers/User/DeleteUser.js";
+import { validateReqRecoverPassword, recoverPassword} from "../controllers/User/RecoverPassword.js";
 
 export const routeUser = Router();
 
@@ -18,4 +19,5 @@ routeUser.put("/profile", authGuard, uploadProfile.single("profile"), handleFile
 routeUser.delete("/delete/profile", authGuard, deleteImageProfile);
 routeUser.delete("/delete/user", authGuard, deleteUser);
 routeUser.get("/details", authGuard, getUser);
-routeUser.get("/authentication/:userId", authenticateUser);
+routeUser.get("/authentication/:userId", validateReqAuthenticationUser, authenticateUser);
+routeUser.put("/recover/:email", validateReqRecoverPassword, recoverPassword);

@@ -104,7 +104,7 @@ const authErrorHtml = `<!DOCTYPE html>
 
 {/* <a href="${process.env.HOST}/login">Ir para o login</a> */}
 
-export const validateReqUpdateProfileUser = validateData("params", validate);
+export const validateReqAuthenticationUser = validateData("params", validate);
 
 export const authenticateUser = async (req, res) => {
 
