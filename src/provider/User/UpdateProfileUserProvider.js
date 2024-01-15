@@ -56,7 +56,6 @@ export const updateProfileUserProvider = async (user) => {
 				}
 			},
 			select: {
-				userId: true,
 				profile: {
 					select: {
 						profileId: true,
@@ -66,11 +65,6 @@ export const updateProfileUserProvider = async (user) => {
 						userId: true,
 					}
 				},
-				email: true,
-				promotion: true,
-				rule: true,
-				createdAt: true,
-				updatedAt: true,
 			}
 		});
 

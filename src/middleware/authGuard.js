@@ -30,6 +30,11 @@ export const authGuard = async (req, res, next) => {
 				updatedAt: true, 
 			}
 		});
+
+		if(!req.user){
+			return res.status(401).json({error: true, errors: [{error: "usuario não cadastrado."}]});
+		}
+		
 		next();
 
 	} catch (error) {

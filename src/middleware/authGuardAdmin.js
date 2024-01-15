@@ -31,6 +31,10 @@ export const authGuardAdmin = async (req, res, next) => {
 			}
 		});
 
+		if(!req.user){
+			return res.status(401).json({error: true, errors: [{error: "usuario não cadastrado."}]});
+		}
+
 		if(user.rule !== "admin"){
 			return res.status(401).json({error: true, errors: [{error: "você não é um administrador!"}]});
 		}

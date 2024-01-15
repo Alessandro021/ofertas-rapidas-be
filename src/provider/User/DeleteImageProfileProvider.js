@@ -33,17 +33,13 @@ export const deleteImageProfileProvider = async (userId) => {
 			select: {
 				user: {
 					select: {
-						userId: true,
-						email: true,
 						profile: true,
-						promotion: true,
-						rule: true,
-						createdAt: true,
-						updatedAt: true 
+						
 					}
 				}
 			}
 		});
+
 
 		if(photoDeleted){
 			const photoPath = path.join(__dirname, `/uploads/profile/${photoExist.profile.photo}`);

@@ -78,7 +78,7 @@ export const createUserProvider = async (user) => {
 
 		sendmail({to: user.email, subject: "Validar conta no Ofertas Rapidas", html: html });
 
-		return {userId: newUser.userId};
+		return {userId: newUser.userId, message: "Email de verificação enviado com sucesso para a sua caixa de email."};
 	} catch (error) {
 		// console.log(`ERROR CREATE USER: ${error}`);
 		return new Error("Error ao criar usuario.");

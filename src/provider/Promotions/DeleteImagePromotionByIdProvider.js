@@ -15,38 +15,7 @@ export const deleteImagePromotionByIdProvider = async (promotionId) => {
 		const promotion = await prisma.promotions.update({
 			where: {promotionId: promotionId},
 			data: {photo: null},
-			select: {
-				_count: true,
-				promotionId: true,
-				title: true,
-				description: true,
-				company: true,
-				photo: true,
-				category: {
-					select: {
-						categoryId: true,
-						name: true,
-					}
-				},
-				expirationDate: true,
-				url: true,
-				user: {
-					select: {
-						profile: {
-							select: {
-								userId: true,
-								userName: true,
-								userSurname: true,
-								photo: true,
-							}
-						}
-					}
-				},
-				comments: true,
-				rating: true,
-				createdAt: true,
-				updatedAt: true,
-			}
+			
 		});
 
 		if(promotion){
