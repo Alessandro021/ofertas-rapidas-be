@@ -4,12 +4,25 @@
 
 O Ofertas Rapidas é um aplicativo que permite aos usuários compartilharem e descobrirem promoções emocionantes em vários sites. Os usuários podem postar suas promoções favoritas, categorizá-las e interagir com outras promoções através de avaliações e comentários.
 
+## Tecnologias utilizadas
+- nodejs
+- nodemailer
+- prisma
+- multer
+- googleapis
+- bcrypt
+- jsonwebtoken 
+- yup
+
+
 ## Funcionalidades Principais
 
 - Cadastro e autenticação de usuários.
 - Postagem de promoções com informações detalhadas.
 - Categorização de promoções por tipo.
 - Avaliação e comentários de promoções.
+- recuperação de senha
+- validação de conta com envio de email para o usaurio confirmar.
 - Favoritos para salvar promoções favoritas.
 <!-- 
 - Pesquisa avançada de promoções.
