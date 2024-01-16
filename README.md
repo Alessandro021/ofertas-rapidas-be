@@ -30,8 +30,7 @@ O Ofertas Rapidas é um aplicativo que permite aos usuários compartilharem e de
 
 ## Instalação e Configuração
 
-1. Clone este repositório em sua máquina local: git clone https://github.com/Alessandro021/ofertas-rapidas-be.git 
-
+1. Clone este repositório em sua máquina local: `git clone https://github.com/Alessandro021/ofertas-rapidas-be.git`
 
 2. Navegue até a pasta do projeto: cd ofertas-rapidas-be
 

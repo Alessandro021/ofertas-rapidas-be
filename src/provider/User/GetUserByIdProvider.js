@@ -1,6 +1,6 @@
 import {prisma} from "../../database/prismaClient.js";
 
-export const getUserProvider = async (userId) => {
+export const getUserByIdProvider = async (userId) => {
 	try {
 		const user = await prisma.users.findFirst({
 			where: {userId: userId},
@@ -31,7 +31,7 @@ export const getUserProvider = async (userId) => {
 
 	}  catch (error) {
 		// console.log(`ERROR LOGIN USER: ${error}`);
-		return new Error("Error ao buscar usuario.");
+		return new Error("Error ao buscar usuario por id.");
 	} finally {
 		await prisma.$disconnect();
 	}
