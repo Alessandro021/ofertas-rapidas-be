@@ -15,5 +15,5 @@ routePromotion.post("/create", authGuard, uploadPromotion.single("promotion"), h
 routePromotion.put("/update", authGuard, uploadPromotion.single("promotion"), handleFileUploadError, validateReqUpdatePromotions, updatePromotions);
 routePromotion.get("/", authGuard, validateReqGetAllPromotions, getAllPromotions);
 routePromotion.get("/:id", authGuard, validateReqGetPromotionById, getPromotionById);
-routePromotion.delete("/:id", authGuard, validateReqDeletePromotionById, deletePromotionById);
+routePromotion.delete("/:promotionId", authGuard, validateReqDeletePromotionById, deletePromotionById);
 routePromotion.put("/photo/:id", authGuard, validateReqDeleteImagemPromotionById, deleteImagemPromotionById);
