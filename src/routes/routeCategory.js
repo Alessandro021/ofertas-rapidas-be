@@ -4,7 +4,7 @@ import { createCategory, validateReqCreateCategory } from "../controllers/Catego
 import { getAllCategory } from "../controllers/Categories/GetAllCategory.js";
 import { validateReqUpdateCategoryBody, validateReqUpdateCategoryParams, updateCategory } from "../controllers/Categories/updateCategory.js";
 import { validateReqDeleteCategory, deleteCategory } from "../controllers/Categories/DeleteCategory.js";
-import { validateReqGetCategoryById, getCategoryById} from "../controllers/Categories/GetcategoryById.js";
+import { validateReqGetCategoryById, getCategoryById} from "../controllers/Categories/GetCategoryById.js";
 import "../utils/yup/index.js";
 
 

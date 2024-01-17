@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { validateData } from "../../middleware/validateData.js";
-import { getCategoryByIdProvider } from "../../provider/Categories/GetcategoryByIdProvider.js";
+import { getCategoryByIdProvider } from "../../provider/Categories/GetCategoryByIdProvider.js";
 
 const validate = yup.object().shape({
 	id: yup.number().required().moreThan(0).lessThan(1000),
