@@ -11,25 +11,26 @@ export const deleteUserProvider = async (userId) => {
 			return Error("USER_NOT_FOUND");
 		}
 
+		const profilePhoto = await prisma.profile.findFirst({
+			where: {userId: userId},
+			select: {photo: true}
+		});
+
 		const promotionsWithPhotos = await prisma.promotions.findMany({
 			where: {userId: userId},
 			select: {photo: true}
 		});
 
 
-		const profilePhoto = await prisma.profile.findFirst({
-			where: {userId: userId},
-			select: {photo: true}
-		});
-
 		await prisma.comments.deleteMany({
-			where: {userId: userId}
+			where: {promotion: {userId: userId}},
 		});
 
 		await prisma.ratings.deleteMany({
-			where: {userId: userId}
+			where: {promotion:  {userId: userId}}
 		});
 
+	
 		await prisma.promotions.deleteMany({
 			where: {userId: userId},           
 		});
@@ -61,7 +62,7 @@ export const deleteUserProvider = async (userId) => {
 		return Error("Error ao deletar usuario.");
 
 	} catch (error) {
-		// console.log(`ERROR DELETE PHOTO PROFILE: ${error}`);
+		console.log(`ERROR DELETE USER: ${error}`);
 		return Error("Error ao deletar usuario.");
 	} finally {
 		await prisma.$disconnect();

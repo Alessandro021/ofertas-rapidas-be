@@ -31,7 +31,7 @@ export const authGuardAdmin = async (req, res, next) => {
 			}
 		});
 
-		if(!req.user){
+		if(!user){
 			return res.status(401).json({error: true, errors: [{error: "usuario não cadastrado."}]});
 		}
 
