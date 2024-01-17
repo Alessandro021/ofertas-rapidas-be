@@ -8,6 +8,7 @@ export const getUserProvider = async (userId) => {
 				userId: true,
 				email: true,
 				rule: true,
+				userAuthenticated: true,
 				profile: true,
 				createdAt: true,
 				updatedAt: true,

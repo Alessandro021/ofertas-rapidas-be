@@ -19,3 +19,5 @@ export const deleteCategory = async (req, res) => {
 
 	return res.status(200).json({error: false, result: result});
 };
+
+//TODO:  Deletar categoria e promotios
