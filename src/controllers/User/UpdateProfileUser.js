@@ -5,7 +5,6 @@ import { validateData } from "../../middleware/validateData.js";
 const validate = yup.object().shape({
 	userName: yup.string().optional().min(3),
 	userSurname: yup.string().optional().min(3),
-	email: yup.string().email().optional().nonNullable().min(6),
 	password: yup.string().optional().nonNullable().min(8),
 });
 

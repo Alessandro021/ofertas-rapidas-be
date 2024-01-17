@@ -4,12 +4,20 @@ import fs from "fs";
 import path from "path";
 
 
-/** @argument user  {{userId: string, photo: string, userName: string, userSurname: string, email: string, password: string }} */
+/** @argument user {{userId: string, photo: string, userName: string, userSurname: string, email: string, password: string }} */
 
 const __dirname = path.resolve();
 
 export const updateProfileUserProvider = async (user) => {
 	try {
+
+		const userExists = await prisma.users.findFirst({
+			where: {userId: user.userId}
+		});
+
+		if(!userExists) {
+			return Error("USER_NOT_FOUND");
+		}
 
 		let newUser = {};
 		let newProfile = {};
@@ -20,7 +28,7 @@ export const updateProfileUserProvider = async (user) => {
 
 		if(user?.email){
 			newUser.email = user.email;
-		}
+		} //SOMENTE O ADMIN PODE ALTERAR O EMAIL DO USUARIO
 
 		if(user?.userName){
 			newProfile.userName = user.userName;
@@ -79,7 +87,7 @@ export const updateProfileUserProvider = async (user) => {
 		return new Error("Error ao atualizar perfil.");
 
 	} catch (error) {
-		// console.log(`ERROR UPDATE PROFILE USER: ${error}`);
+		console.log(`ERROR UPDATE PROFILE USER: ${error}`);
 		return new Error("Error ao atualizar perfil.");
 	} finally {
 		await prisma.$disconnect();

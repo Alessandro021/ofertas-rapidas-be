@@ -6,10 +6,10 @@ const validate = yup.object().shape({
 	id: yup.string().strict().required().min(36).max(36), //userId: string
 });
 
-export const validateReqGetAllRatingsByPromotionId = validateData("params", validate);
+export const validateReqdeleteUser= validateData("params", validate);
 
 
-export const adminDeleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
 
 	const {id: userId} = await validate.validate(req.params, {stripUnknown: true});
 
