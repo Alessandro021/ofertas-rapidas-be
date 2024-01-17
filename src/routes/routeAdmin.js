@@ -5,6 +5,7 @@ import { validateReqdeleteUser, deleteUser} from "../controllers/Admin/DeletarUs
 import { validateReqUpdateUserParams, validateReqUpdateUserBody, updateUser } from "../controllers/Admin/UpdateUser.js";
 import { uploadProfile, handleFileUploadError } from "../middleware/uploadProfile.js";
 import { getAllusers } from "../controllers/Admin/GetAllUsers.js";
+import { validateReqUpdateCommentsParams, validateReqUpdateCommentsBody, updateComments } from "../controllers/Admin/UpdateComments.js";
 
 
 export const routeAdmin = Router();
@@ -12,4 +13,6 @@ export const routeAdmin = Router();
 routeAdmin.delete("/delete/user/:id", authGuardAdmin, validateReqdeleteUser, deleteUser);
 routeAdmin.put("/update/user/:id", authGuardAdmin, uploadProfile.single("profile"), handleFileUploadError ,validateReqUpdateUserParams, validateReqUpdateUserBody, updateUser);
 routeAdmin.get("/get/users", authGuardAdmin, getAllusers);
+
+routeAdmin.put("/update/comment/:userId", validateReqUpdateCommentsParams, validateReqUpdateCommentsBody, updateComments);
 
