@@ -10,6 +10,7 @@ import { validateReqUpdateCommentsParams, validateReqUpdateCommentsBody, updateC
 import { validateReqDeleteCommentsParams, validateReqDeleteCommentsBody, deleteComments  } from "../controllers/Admin/Deletecomments.js";
 import { validateReqDeletePromotionParams, validateReqDeletePromotionBody, deletePromotion } from "../controllers/Admin/DeletePromotion.js";
 import { validateReqUpdatePromotions, updatePromotions} from "../controllers/Admin/UpdatePromotion.js";
+import { validateReqDeletePhotoPromotionParams, validateReqDeletephotoPromotionBody, deletePhotoPromotion} from "../controllers/Admin/DeletePhotoPromotion.js";
 
 
 export const routeAdmin = Router();
@@ -25,4 +26,4 @@ routeAdmin.delete("/delete/comment/:userId",authGuardAdmin, validateReqDeleteCom
 //PROMOTION
 routeAdmin.delete("/delete/promotion/:userId",authGuardAdmin, validateReqDeletePromotionParams, validateReqDeletePromotionBody, deletePromotion);
 routeAdmin.put("/update/promotion",authGuardAdmin, uploadPromotion.single("promotion"), handleFileUploadError , validateReqUpdatePromotions, updatePromotions);
-//TODO: adicionar deletar photo promotion
+routeAdmin.put("/update/promotion/:userId", authGuardAdmin, validateReqDeletePhotoPromotionParams, validateReqDeletephotoPromotionBody, deletePhotoPromotion);
