@@ -4,10 +4,12 @@ import { authGuardAdmin } from "../middleware/authGuardAdmin.js";
 import { validateReqdeleteUser, deleteUser} from "../controllers/Admin/DeletarUser.js";
 import { validateReqUpdateUserParams, validateReqUpdateUserBody, updateUser } from "../controllers/Admin/UpdateUser.js";
 import { uploadProfile, handleFileUploadError } from "../middleware/uploadProfile.js";
+import { uploadPromotion} from "../middleware/uploadPromotion.js";
 import { getAllusers } from "../controllers/Admin/GetAllUsers.js";
 import { validateReqUpdateCommentsParams, validateReqUpdateCommentsBody, updateComments } from "../controllers/Admin/UpdateComments.js";
 import { validateReqDeleteCommentsParams, validateReqDeleteCommentsBody, deleteComments  } from "../controllers/Admin/Deletecomments.js";
 import { validateReqDeletePromotionParams, validateReqDeletePromotionBody, deletePromotion } from "../controllers/Admin/DeletePromotion.js";
+import { validateReqUpdatePromotions, updatePromotions} from "../controllers/Admin/UpdatePromotion.js";
 
 
 export const routeAdmin = Router();
@@ -22,3 +24,5 @@ routeAdmin.delete("/delete/comment/:userId",authGuardAdmin, validateReqDeleteCom
 
 //PROMOTION
 routeAdmin.delete("/delete/promotion/:userId",authGuardAdmin, validateReqDeletePromotionParams, validateReqDeletePromotionBody, deletePromotion);
+routeAdmin.put("/update/promotion",authGuardAdmin, uploadPromotion.single("promotion"), handleFileUploadError , validateReqUpdatePromotions, updatePromotions);
+//TODO: adicionar deletar photo promotion
