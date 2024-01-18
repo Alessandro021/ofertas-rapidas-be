@@ -8,5 +8,9 @@ export const generatedToken = (userId) => {
 };
 
 export const decodedToken = (token) => {
-	return verify(token, process.env.SECRET_JWT);
+	try {
+		return verify(token, process.env.SECRET_JWT);
+	} catch (error) {
+		return null;
+	}
 };
